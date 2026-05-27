@@ -1,26 +1,89 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #fef7f0;
+  --foreground: #2a1810;
+  --cream: #fef7f0;
+  --cream-soft: #faecd9;
+  --berry: #d63b6b;
+  --berry-dark: #a72553;
+  --pistachio: #8fb96d;
+  --pistachio-deep: #5a8a3e;
+  --cocoa: #4a2818;
+  --gold: #e8b04b;
+  --mint: #b7e3d3;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --color-cream: var(--cream);
+  --color-cream-soft: var(--cream-soft);
+  --color-berry: var(--berry);
+  --color-berry-dark: var(--berry-dark);
+  --color-pistachio: var(--pistachio);
+  --color-pistachio-deep: var(--pistachio-deep);
+  --color-cocoa: var(--cocoa);
+  --color-gold: var(--gold);
+  --color-mint: var(--mint);
+  --font-sans: var(--font-inter);
+  --font-display: var(--font-fraunces);
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-inter), system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Custom scrollbar — playful */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-track {
+  background: var(--cream-soft);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--berry);
+  border-radius: 999px;
+}
+
+/* Scoop blob — used in hero */
+.scoop-blob {
+  border-radius: 49% 51% 56% 44% / 47% 52% 48% 53%;
+  animation: morph 12s ease-in-out infinite;
+}
+
+@keyframes morph {
+  0%, 100% { border-radius: 49% 51% 56% 44% / 47% 52% 48% 53%; }
+  33% { border-radius: 62% 38% 41% 59% / 55% 60% 40% 45%; }
+  66% { border-radius: 44% 56% 52% 48% / 60% 40% 60% 40%; }
+}
+
+.drip {
+  filter: drop-shadow(0 8px 16px rgba(214, 59, 107, 0.15));
+}
+
+/* Marquee for tagline strip */
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+.marquee {
+  animation: marquee 30s linear infinite;
+}
+
+/* Subtle gradient grain overlay */
+.grain {
+  position: relative;
+}
+.grain::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.06;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
 }

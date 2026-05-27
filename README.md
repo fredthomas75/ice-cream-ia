@@ -1,36 +1,68 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Glacé IA 🍦
 
-## Getting Started
+Site transactionnel de crème glacée artisanale — scaffold démonstratif construit avec l'aide de l'IA lors du Half-Hack **« T'as faim pour l'IA? »** pour Intact Assurance, animé par Talsom.
 
-First, run the development server:
+> **L'histoire.** L'atelier proposait de bâtir une boutique de bonbons avec Copilot. En sortant, on a pivoté vers la crème glacée — et on a scaffold le site en direct avec Claude Code.
+
+## Stack
+
+- **Next.js 16** (App Router) + Turbopack
+- **React 19**
+- **TypeScript**
+- **Tailwind CSS v4**
+- **Zustand** — panier persisté en localStorage
+- **lucide-react** — icônes
+- **Fraunces + Inter** — typographie
+
+## Fonctionnalités
+
+- 12 parfums artisanaux avec fiches détaillées
+- Panier client persisté (zustand + localStorage)
+- Tunnel de commande complet (coordonnées, livraison, paiement)
+- Filtres par catégorie (Classiques · Signatures · Sorbets · Vegan)
+- Pages: accueil, menu, fiche produit, panier, commande, confirmation, histoire, livraison
+- Design responsive — mobile, tablette, desktop
+- Identité visuelle dédiée: palette berry + crème + pistache, scoops morphés
+
+## Démarrage
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Ouvrir [http://localhost:3000](http://localhost:3000).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Build production
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+npm run build
+npm start
+```
 
-## Learn More
+## Structure
 
-To learn more about Next.js, take a look at the following resources:
+```
+app/
+  page.tsx              # Accueil
+  menu/                 # Catalogue + filtres
+  produit/[slug]/       # Fiche produit (SSG pour les 12)
+  panier/               # Panier
+  commande/             # Checkout
+  confirmation/         # Confirmation
+  notre-histoire/       # À propos
+  livraison/            # Zones livrées
+components/             # Header, Footer, Scoop, ProductCard, AddToCart…
+lib/
+  products.ts           # Données des 12 parfums
+  cart.ts               # Store zustand
+  utils.ts              # cn(), formatPrice()
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Déploiement
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Optimisé pour Vercel — `vercel deploy` ou push sur GitHub puis import dans Vercel.
 
-## Deploy on Vercel
+---
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+**Atelier Half-Hack Intact Assurance** — animé par Adil Mansouri, Paul Léné et Frédéric Thomas (Talsom).
