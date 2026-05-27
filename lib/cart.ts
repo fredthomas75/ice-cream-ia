@@ -7,7 +7,8 @@ import type { Product } from "./products";
 export type CartLine = {
   slug: string;
   name: string;
-  pricePerPint: number;
+  price: number;
+  unit: string;
   quantity: number;
   emoji: string;
   accentColor: string;
@@ -43,7 +44,8 @@ export const useCart = create<CartState>()(
               {
                 slug: p.slug,
                 name: p.name,
-                pricePerPint: p.pricePerPint,
+                price: p.price,
+                unit: p.unit,
                 emoji: p.emoji,
                 accentColor: p.accentColor,
                 quantity: qty,
@@ -62,10 +64,10 @@ export const useCart = create<CartState>()(
       clear: () => set({ lines: [] }),
       count: () => get().lines.reduce((acc, l) => acc + l.quantity, 0),
       subtotal: () =>
-        get().lines.reduce((acc, l) => acc + l.pricePerPint * l.quantity, 0),
+        get().lines.reduce((acc, l) => acc + l.price * l.quantity, 0),
     }),
     {
-      name: "glace-ia-cart",
+      name: "bonbon-ia-cart",
       partialize: (s) => ({ lines: s.lines }),
     },
   ),

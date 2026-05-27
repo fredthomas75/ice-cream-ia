@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
-import { Snowflake, Clock, MapPin, Truck } from "lucide-react";
+import { Package, Clock, MapPin, Truck } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "Livraison — Glacé IA",
-  description: "Livraison congelée à Montréal et environs, sous 90 minutes.",
+  title: "Livraison — Bonbon IA",
+  description: "Livraison soignée à Montréal et environs, sous 24 heures.",
 };
 
 const zones = [
@@ -24,25 +24,25 @@ export default function DeliveryPage() {
         Logistique
       </p>
       <h1 className="mt-2 font-display text-5xl font-semibold tracking-tight text-cocoa sm:text-6xl">
-        Livrée congelée
+        Livré chez vous
       </h1>
       <p className="mt-4 max-w-2xl text-lg text-cocoa/70">
-        Nos pintes voyagent dans des contenants isothermes avec de la glace
-        sèche. À température dès la sortie du congélateur, à température à votre
-        porte.
+        Nos bonbons voyagent dans des sachets et boîtes scellés, emballés à la
+        main, glissés dans une enveloppe matelassée recyclable. Pas de plastique
+        inutile.
       </p>
 
       <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
         <Feature
           icon={<Clock className="h-5 w-5" />}
-          title="Sous 90 minutes"
-          body="De la sortie du congélateur à votre porte."
+          title="Sous 24 heures"
+          body="De la confection à votre porte."
           color="#d63b6b"
         />
         <Feature
-          icon={<Snowflake className="h-5 w-5" />}
-          title="-18 °C garanti"
-          body="Glace sèche dans un isotherme rigide."
+          icon={<Package className="h-5 w-5" />}
+          title="Emballage soigné"
+          body="Scellés sous vide pour la fraîcheur."
           color="#5a9874"
         />
         <Feature
@@ -87,14 +87,14 @@ export default function DeliveryPage() {
           Hors zone&nbsp;? On peut s&apos;arranger.
         </p>
         <p className="mx-auto mt-3 max-w-md text-cream/70">
-          Pour les commandes de groupe, événements, ou livraisons spéciales —
-          écrivez-nous.
+          Pour les commandes de groupe, événements corporatifs, ou cadeaux
+          d&apos;entreprise — écrivez-nous.
         </p>
         <a
-          href="mailto:bonjour@glace-ia.ca"
+          href="mailto:bonjour@bonbon-ia.ca"
           className="mt-6 inline-flex h-12 items-center rounded-full bg-berry px-6 font-medium text-white transition hover:bg-berry-dark"
         >
-          bonjour@glace-ia.ca
+          bonjour@bonbon-ia.ca
         </a>
       </div>
     </div>
@@ -127,4 +127,3 @@ function Feature({
     </div>
   );
 }
-

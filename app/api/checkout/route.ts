@@ -40,7 +40,7 @@ export async function POST(req: Request) {
   }
 
   const subtotal = resolved.reduce(
-    (acc, l) => acc + l.product.pricePerPint * l.quantity,
+    (acc, l) => acc + l.product.price * l.quantity,
     0,
   );
   const deliveryFee = subtotal >= FREE_DELIVERY_THRESHOLD ? 0 : DELIVERY_FEE;
@@ -61,7 +61,7 @@ export async function POST(req: Request) {
     quantity,
     price_data: {
       currency: "cad",
-      unit_amount: Math.round(product.pricePerPint * 100),
+      unit_amount: Math.round(product.price * 100),
       product_data: {
         name: product.name,
         description: product.tagline,
@@ -77,8 +77,8 @@ export async function POST(req: Request) {
         currency: "cad",
         unit_amount: Math.round(deliveryFee * 100),
         product_data: {
-          name: "Livraison congelée",
-          description: "Glace sèche · -18 °C garanti",
+          name: "Livraison soignée",
+          description: "Emballage scellé · sous 24 heures",
           metadata: { slug: "delivery" },
         },
       },

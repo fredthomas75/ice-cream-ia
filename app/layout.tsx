@@ -16,12 +16,12 @@ const fraunces = Fraunces({
 });
 
 export const metadata: Metadata = {
-  title: "Glacé IA — Crème glacée artisanale livrée chez vous",
+  title: "Bonbon IA — Confiserie artisanale livrée chez vous",
   description:
-    "Glacé IA — la crème glacée artisanale née d'un atelier d'IA. Vanille Madagascar, pistache Sicilienne, sorbets vegan. Livraison Montréal et Québec.",
+    "Bonbon IA — la confiserie artisanale née d'un atelier d'IA. Tire Sainte-Catherine, sucre à la crème, fraises suédoises, gommeux surs. Livraison Montréal.",
   openGraph: {
-    title: "Glacé IA — Crème glacée artisanale",
-    description: "Crème glacée artisanale livrée chez vous.",
+    title: "Bonbon IA — Confiserie artisanale",
+    description: "Bonbons artisanaux québécois livrés chez vous.",
   },
 };
 

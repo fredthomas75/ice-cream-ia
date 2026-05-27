@@ -4,8 +4,8 @@ import { ArrowRight } from "lucide-react";
 import { Scoop } from "@/components/scoop";
 
 export const metadata: Metadata = {
-  title: "Notre histoire — Glacé IA",
-  description: "Comment un atelier d'IA chez Talsom a accouché d'une crème glacée.",
+  title: "Notre histoire — Bonbon IA",
+  description: "Comment un atelier d'IA chez Talsom a donné naissance à une confiserie.",
 };
 
 export default function StoryPage() {
@@ -17,7 +17,7 @@ export default function StoryPage() {
       <h1 className="mt-2 font-display text-5xl font-semibold leading-[1.05] tracking-tight text-cocoa sm:text-6xl">
         Né d&apos;un atelier d&apos;IA.
         <br />
-        <span className="italic text-berry">Brassé à la main.</span>
+        <span className="italic text-berry">Fait à la main.</span>
       </h1>
 
       <div className="prose-custom mt-12 space-y-6 text-lg leading-relaxed text-cocoa/80">
@@ -28,21 +28,22 @@ export default function StoryPage() {
           aider à concrétiser une idée d&apos;affaires en quelques heures.
         </p>
         <p>
-          Le scénario proposé: lancer une boutique gourmande. Études de marché,
+          Le scénario proposé: lancer une boutique de bonbons. Études de marché,
           profils clients, Business Model Canvas, branding — tout devait être
           dégrossi avec l&apos;aide de Copilot. À la fin de la journée, nous avions
-          un projet de boutique de bonbons.
+          un projet de confiserie.
         </p>
         <p>
-          Mais en repartant, l&apos;un d&apos;entre nous a dit: <em>«&nbsp;Pourquoi pas la
-          crème glacée?&nbsp;»</em> Trois semaines plus tard, on brassait notre
-          premier lot de Vanille Madagascar dans un local du Plateau.
+          Trois semaines plus tard, on tirait notre premier lot de Tire Sainte-Catherine
+          dans un local du Plateau. La recette de la mélasse vient d&apos;une grand-mère
+          de Saint-Hyacinthe. Le sucre à la crème, d&apos;une cabane de la Beauce.
+          Le reste, on l&apos;a appris en faisant.
         </p>
 
         <div className="my-12 flex justify-center">
           <Scoop
-            gradient="radial-gradient(circle at 30% 30%, #ffd1dc 0%, #f088a8 50%, #d63b6b 100%)"
-            emoji="🍦"
+            gradient="radial-gradient(circle at 30% 30%, #f5d896 0%, #d4a042 50%, #8b5a1f 100%)"
+            emoji="🍯"
             size="lg"
           />
         </div>
@@ -53,8 +54,8 @@ export default function StoryPage() {
         <p>
           L&apos;IA nous a aidés à <strong>aller plus vite</strong> sur ce qui n&apos;est
           pas notre métier: recherche, rédaction, branding, fiches produits.
-          Pour la glace elle-même, on s&apos;est appuyés sur des artisans et un chef
-          glacier qui sait ce qu&apos;il fait depuis vingt ans.
+          Pour les bonbons eux-mêmes, on s&apos;est appuyés sur des artisans et
+          un chef confiseur qui sait ce qu&apos;il fait depuis vingt ans.
         </p>
         <p>
           Notre règle: l&apos;IA fait le pénible, l&apos;humain fait l&apos;essentiel.
@@ -64,10 +65,10 @@ export default function StoryPage() {
           Comment on travaille
         </h2>
         <ul className="ml-6 list-disc space-y-2">
-          <li>Du lait québécois, jamais reconstitué.</li>
-          <li>Des fruits de saison — quand ils ne sont pas bons, on attend.</li>
-          <li>Pas d&apos;arôme artificiel, pas de colorant, pas de stabilisant industriel.</li>
-          <li>Brassée en lots de 8 pintes. Livraison congelée sous 90 minutes.</li>
+          <li>Des ingrédients québécois quand possible — beurre Île-aux-Grues, sel des Îles, érable de la Beauce.</li>
+          <li>Pas de sirop de maïs à haute teneur en fructose. Sucre de canne, miel, mélasse, érable.</li>
+          <li>Pas de colorant artificiel — si c&apos;est rose, c&apos;est qu&apos;il y a des fraises.</li>
+          <li>Confectionné en lots de 30 à 50 sachets. Livraison soignée chez vous sous 24 heures.</li>
         </ul>
       </div>
 
@@ -79,7 +80,7 @@ export default function StoryPage() {
           href="/menu"
           className="mt-6 inline-flex items-center gap-2 rounded-full bg-berry px-6 py-3 text-sm font-medium text-white transition hover:bg-berry-dark"
         >
-          Voir les douze parfums
+          Voir les douze bonbons
           <ArrowRight className="h-4 w-4" />
         </Link>
       </div>

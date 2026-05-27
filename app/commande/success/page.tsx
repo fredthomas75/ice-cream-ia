@@ -7,7 +7,7 @@ import { formatPrice } from "@/lib/utils";
 import { ClearCartOnMount } from "./clear-cart-on-mount";
 
 export const metadata: Metadata = {
-  title: "Commande confirmée — Glacé IA",
+  title: "Commande confirmée — Bonbon IA",
 };
 
 type SearchParams = Promise<{ session_id?: string }>;
@@ -59,11 +59,11 @@ export default async function SuccessPage({
         {isPaid ? "Paiement reçu" : "Commande enregistrée"}
       </p>
       <h1 className="mt-3 font-display text-5xl font-semibold leading-[1.1] tracking-tight text-cocoa">
-        Merci, vos pintes arrivent.
+        Merci, vos bonbons arrivent.
       </h1>
       <p className="mt-4 max-w-md text-lg text-cocoa/70">
-        Nous préparons votre commande dès maintenant — livrée congelée chez vous
-        dans les 90 prochaines minutes.
+        Nous préparons votre commande dès maintenant — livrée chez vous dans
+        les 24 prochaines heures.
       </p>
 
       <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
@@ -99,7 +99,7 @@ export default async function SuccessPage({
           href="/menu"
           className="inline-flex h-12 items-center gap-2 rounded-full bg-cocoa px-6 font-medium text-cream transition hover:bg-cocoa/90"
         >
-          Voir les autres parfums
+          Voir les autres bonbons
           <ArrowRight className="h-4 w-4" />
         </Link>
         <Link

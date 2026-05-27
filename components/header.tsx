@@ -23,10 +23,10 @@ export function Header() {
             }}
             aria-hidden
           >
-            🍦
+            🍬
           </span>
           <span>
-            Glacé<span className="text-berry">IA</span>
+            Bonbon<span className="text-berry">IA</span>
           </span>
         </Link>
 

@@ -41,9 +41,9 @@ export function ProductCard({ product }: { product: Product }) {
 
       <div className="mt-5 flex items-center justify-between border-t border-cocoa/5 pt-4">
         <span className="font-display text-xl font-semibold text-cocoa">
-          {formatPrice(product.pricePerPint)}
+          {formatPrice(product.price)}
           <span className="ml-1 text-[11px] font-normal text-cocoa/50">
-            / pinte
+            · {product.unit}
           </span>
         </span>
         <span className="text-sm font-medium text-berry opacity-0 transition group-hover:opacity-100">

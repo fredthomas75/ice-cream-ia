@@ -38,7 +38,7 @@ export default function CartPage() {
             Votre panier est vide
           </p>
           <p className="mx-auto mt-2 max-w-sm text-cocoa/60">
-            Allez voir les 12 parfums — au moins un va vous plaire.
+            Allez voir les 12 bonbons — au moins un va vous plaire.
           </p>
           <Link
             href="/menu"
@@ -74,7 +74,7 @@ export default function CartPage() {
                     {line.name}
                   </Link>
                   <p className="mt-0.5 text-sm text-cocoa/50">
-                    {formatPrice(line.pricePerPint)} / pinte
+                    {formatPrice(line.price)} · {line.unit}
                   </p>
                 </div>
 
@@ -101,7 +101,7 @@ export default function CartPage() {
                 </div>
 
                 <div className="hidden w-20 text-right font-display font-semibold text-cocoa sm:block">
-                  {formatPrice(line.pricePerPint * line.quantity)}
+                  {formatPrice(line.price * line.quantity)}
                 </div>
 
                 <button
@@ -125,7 +125,7 @@ export default function CartPage() {
                 <dd>{formatPrice(subtotal)}</dd>
               </div>
               <div className="flex justify-between">
-                <dt className="text-cream/70">Livraison congelée</dt>
+                <dt className="text-cream/70">Livraison</dt>
                 <dd>
                   {freeDelivery ? (
                     <span className="text-pistachio">Offerte</span>

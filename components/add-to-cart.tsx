@@ -58,7 +58,7 @@ export function AddToCart({ product }: { product: Product }) {
         ) : (
           <>
             <ShoppingBag className="h-4 w-4" />
-            Ajouter — {qty} pinte{qty > 1 ? "s" : ""}
+            Ajouter au panier ({qty})
           </>
         )}
       </button>

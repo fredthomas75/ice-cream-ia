@@ -4,15 +4,16 @@ import { products, type Category } from "@/lib/products";
 import { ProductCard } from "@/components/product-card";
 
 export const metadata: Metadata = {
-  title: "Le menu — Glacé IA",
-  description: "12 parfums artisanaux. Classiques, signatures, sorbets vegan.",
+  title: "Le menu — Bonbon IA",
+  description: "12 bonbons artisanaux. Traditions québécoises, gommeux, premium, vegan.",
 };
 
 const filters: { value: Category | "all" | "vegan"; label: string }[] = [
   { value: "all", label: "Tout" },
+  { value: "tradition", label: "Traditions" },
   { value: "classique", label: "Classiques" },
-  { value: "signature", label: "Signatures" },
-  { value: "sorbet", label: "Sorbets" },
+  { value: "gommeux", label: "Gommeux & surs" },
+  { value: "premium", label: "Premium" },
   { value: "vegan", label: "Vegan" },
 ];
 
@@ -40,12 +41,12 @@ export default async function MenuPage({
           Le menu
         </p>
         <h1 className="mt-2 font-display text-5xl font-semibold tracking-tight text-cocoa sm:text-6xl">
-          Douze parfums. Aucun raccourci.
+          Douze bonbons. Aucun raccourci.
         </h1>
         <p className="mt-4 text-lg text-cocoa/70">
-          Chaque pinte est brassée à la main au Plateau-Mont-Royal. Les
-          ingrédients changent avec les saisons — quand un fruit n&apos;est pas bon,
-          la glace ne sort pas.
+          Chaque lot est confectionné à la main au Plateau-Mont-Royal. Les
+          recettes traversent les saisons — quand un ingrédient n&apos;est pas
+          au rendez-vous, on attend.
         </p>
       </div>
 
@@ -73,7 +74,7 @@ export default async function MenuPage({
       </div>
 
       {shown.length === 0 ? (
-        <p className="text-cocoa/60">Aucun parfum dans cette catégorie.</p>
+        <p className="text-cocoa/60">Aucun bonbon dans cette catégorie.</p>
       ) : (
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
           {shown.map((p) => (
@@ -84,20 +85,19 @@ export default async function MenuPage({
 
       <div className="mt-16 rounded-3xl bg-white p-8 text-center shadow-sm">
         <p className="font-display text-2xl font-semibold text-cocoa">
-          Vous cherchez un parfum particulier&nbsp;?
+          Vous cherchez une saveur particulière&nbsp;?
         </p>
         <p className="mx-auto mt-2 max-w-xl text-cocoa/70">
           Nos lots changent toutes les deux semaines. Écrivez-nous et nous
-          essaierons de le brasser pour vous.
+          essaierons de la confectionner pour vous.
         </p>
         <a
-          href="mailto:bonjour@glace-ia.ca"
+          href="mailto:bonjour@bonbon-ia.ca"
           className="mt-6 inline-flex h-11 items-center rounded-full bg-berry px-6 text-sm font-medium text-white transition hover:bg-berry-dark"
         >
-          bonjour@glace-ia.ca
+          bonjour@bonbon-ia.ca
         </a>
       </div>
     </div>
   );
 }
-

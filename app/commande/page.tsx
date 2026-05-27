@@ -200,11 +200,11 @@ export default function CheckoutPage() {
                 <div className="min-w-0 flex-1">
                   <p className="truncate text-sm font-medium">{l.name}</p>
                   <p className="text-xs text-cream/50">
-                    {l.quantity} × {formatPrice(l.pricePerPint)}
+                    {l.quantity} × {formatPrice(l.price)}
                   </p>
                 </div>
                 <span className="text-sm font-semibold">
-                  {formatPrice(l.pricePerPint * l.quantity)}
+                  {formatPrice(l.price * l.quantity)}
                 </span>
               </li>
             ))}

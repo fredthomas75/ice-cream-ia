@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { ArrowLeft, Snowflake, Leaf, AlertCircle } from "lucide-react";
-import { productBySlug, products } from "@/lib/products";
+import { ArrowLeft, Truck, Leaf, AlertCircle } from "lucide-react";
+import { productBySlug, products, categoryLabels } from "@/lib/products";
 import { formatPrice } from "@/lib/utils";
 import { Scoop } from "@/components/scoop";
 import { AddToCart } from "@/components/add-to-cart";
@@ -21,9 +21,9 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { slug } = await params;
   const p = productBySlug(slug);
-  if (!p) return { title: "Parfum introuvable — Glacé IA" };
+  if (!p) return { title: "Bonbon introuvable — Bonbon IA" };
   return {
-    title: `${p.name} — Glacé IA`,
+    title: `${p.name} — Bonbon IA`,
     description: p.description,
   };
 }
@@ -72,11 +72,7 @@ export default async function ProductPage({
               </span>
             )}
             <span className="rounded-full bg-white/80 px-3 py-1 text-xs font-medium text-cocoa">
-              {product.category === "sorbet"
-                ? "Sorbet"
-                : product.category === "signature"
-                  ? "Signature"
-                  : "Classique"}
+              {categoryLabels[product.category]}
             </span>
           </div>
         </div>
@@ -98,9 +94,9 @@ export default async function ProductPage({
 
           <div className="mt-8 flex items-baseline gap-3">
             <span className="font-display text-4xl font-semibold text-cocoa">
-              {formatPrice(product.pricePerPint)}
+              {formatPrice(product.price)}
             </span>
-            <span className="text-sm text-cocoa/60">la pinte (473 ml)</span>
+            <span className="text-sm text-cocoa/60">— {product.unit}</span>
           </div>
 
           <div className="mt-6">
@@ -122,15 +118,15 @@ export default async function ProductPage({
                 Format
               </p>
               <p className="mt-1 text-sm font-medium text-cocoa">
-                Pinte de 473 ml
+                {product.unit}
               </p>
             </div>
             <div className="bg-white p-5">
               <p className="text-[11px] font-semibold uppercase tracking-widest text-cocoa/50 flex items-center gap-1">
-                <Snowflake className="h-3 w-3" /> Livraison
+                <Truck className="h-3 w-3" /> Livraison
               </p>
               <p className="mt-1 text-sm font-medium text-cocoa">
-                Congelée, sous 90 min
+                Sous 24 heures
               </p>
             </div>
             <div className="bg-white p-5">
@@ -146,7 +142,7 @@ export default async function ProductPage({
           {/* Pairings */}
           <div className="mt-8">
             <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-cocoa/50">
-              Se marie avec
+              Idéal avec
             </p>
             <div className="mt-3 flex flex-wrap gap-2">
               {product.pairs.map((pair) => (
