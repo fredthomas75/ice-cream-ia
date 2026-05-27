@@ -71,5 +71,4 @@ export const useCart = create<CartState>()(
   ),
 );
 
-export const DELIVERY_FEE = 6.5;
-export const FREE_DELIVERY_THRESHOLD = 60;
+export { DELIVERY_FEE, FREE_DELIVERY_THRESHOLD } from "./shipping";

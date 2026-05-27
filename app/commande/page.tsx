@@ -2,7 +2,7 @@
 
 import { useState, useEffect, type FormEvent } from "react";
 import { useRouter } from "next/navigation";
-import { Lock, CheckCircle2 } from "lucide-react";
+import { Lock, CreditCard, AlertCircle } from "lucide-react";
 import { useCart, DELIVERY_FEE, FREE_DELIVERY_THRESHOLD } from "@/lib/cart";
 import { formatPrice } from "@/lib/utils";
 
@@ -14,6 +14,7 @@ export default function CheckoutPage() {
 
   const [mounted, setMounted] = useState(false);
   const [submitting, setSubmitting] = useState(false);
+  const [errorMsg, setErrorMsg] = useState<string | null>(null);
   useEffect(() => setMounted(true), []);
 
   useEffect(() => {
@@ -28,10 +29,55 @@ export default function CheckoutPage() {
 
   async function onSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
+    setErrorMsg(null);
     setSubmitting(true);
-    await new Promise((r) => setTimeout(r, 900));
-    clear();
-    router.push("/confirmation");
+
+    const formData = new FormData(e.currentTarget);
+    const customer = {
+      firstName: String(formData.get("firstName") ?? ""),
+      lastName: String(formData.get("lastName") ?? ""),
+      email: String(formData.get("email") ?? ""),
+      phone: String(formData.get("phone") ?? ""),
+      address: String(formData.get("address") ?? ""),
+      city: String(formData.get("city") ?? ""),
+      postal: String(formData.get("postal") ?? ""),
+      notes: String(formData.get("notes") ?? ""),
+    };
+
+    try {
+      const res = await fetch("/api/checkout", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          customer,
+          lines: lines.map((l) => ({ slug: l.slug, quantity: l.quantity })),
+        }),
+      });
+
+      const data = await res.json();
+
+      if (!res.ok) {
+        throw new Error(data.error ?? "Erreur lors du paiement.");
+      }
+
+      // Stripe configured → redirect to hosted checkout.
+      if (data.url) {
+        window.location.href = data.url as string;
+        return;
+      }
+
+      // No Stripe → simulate success (demo mode).
+      if (data.simulated) {
+        clear();
+        router.push("/commande/success");
+        return;
+      }
+
+      throw new Error("Réponse inattendue du serveur.");
+    } catch (err) {
+      setErrorMsg(err instanceof Error ? err.message : "Erreur inconnue.");
+      setSubmitting(false);
+    }
   }
 
   if (!mounted || lines.length === 0) {
@@ -103,29 +149,38 @@ export default function CheckoutPage() {
             </div>
           </fieldset>
 
-          {/* Paiement */}
-          <fieldset className="rounded-3xl bg-white p-6 shadow-sm sm:p-8">
+          {/* Paiement Stripe info */}
+          <fieldset className="rounded-3xl border border-cocoa/10 bg-gradient-to-br from-white to-cream-soft p-6 sm:p-8">
             <legend className="flex items-center gap-2 font-display text-xl font-semibold text-cocoa">
               Paiement
               <span className="inline-flex items-center gap-1 rounded-full bg-pistachio-deep/10 px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-widest text-pistachio-deep">
-                <Lock className="h-2.5 w-2.5" /> Sécurisé
+                <Lock className="h-2.5 w-2.5" /> Sécurisé Stripe
               </span>
             </legend>
-            <div className="mt-6 grid gap-4 sm:grid-cols-2">
-              <Field
-                label="Numéro de carte"
-                name="card"
-                placeholder="4242 4242 4242 4242"
-                required
-                className="sm:col-span-2"
-              />
-              <Field label="Expiration" name="expiry" placeholder="MM / AA" required />
-              <Field label="CVC" name="cvc" placeholder="123" required />
+            <div className="mt-5 flex items-start gap-4 rounded-2xl bg-white/60 p-5">
+              <div className="grid h-10 w-10 shrink-0 place-items-center rounded-full bg-cocoa text-cream">
+                <CreditCard className="h-4 w-4" />
+              </div>
+              <div className="flex-1 text-sm text-cocoa/70">
+                Vous serez redirigé vers la page sécurisée Stripe pour saisir
+                votre carte. Cartes acceptées : Visa, Mastercard, Amex,
+                Apple Pay, Google Pay.
+                <div className="mt-2 inline-flex items-center gap-2 rounded-full bg-cream-soft px-3 py-1 text-[11px] font-medium text-cocoa">
+                  Test : <code className="font-mono">4242 4242 4242 4242</code>
+                </div>
+              </div>
             </div>
-            <p className="mt-4 text-xs text-cocoa/50">
-              Démonstration uniquement — aucune vraie transaction n&apos;est traitée.
-            </p>
           </fieldset>
+
+          {errorMsg && (
+            <div className="flex items-start gap-3 rounded-2xl border border-berry/30 bg-berry/5 p-4 text-sm text-berry-dark">
+              <AlertCircle className="h-4 w-4 shrink-0 mt-0.5" />
+              <div>
+                <strong>Une erreur est survenue.</strong>
+                <p className="mt-1 text-berry-dark/80">{errorMsg}</p>
+              </div>
+            </div>
+          )}
         </div>
 
         {/* Summary */}
@@ -176,16 +231,17 @@ export default function CheckoutPage() {
             className="mt-6 inline-flex h-12 w-full items-center justify-center gap-2 rounded-full bg-berry font-medium text-white transition hover:bg-berry-dark disabled:opacity-70"
           >
             {submitting ? (
-              "Traitement…"
+              "Redirection vers Stripe…"
             ) : (
               <>
-                <CheckCircle2 className="h-4 w-4" />
-                Confirmer la commande
+                <Lock className="h-4 w-4" />
+                Payer {formatPrice(total)}
               </>
             )}
           </button>
           <p className="mt-3 text-center text-xs text-cream/50">
-            En confirmant, vous acceptez nos conditions de livraison.
+            Paiement sécurisé par Stripe. Aucune information de carte ne
+            transite par nos serveurs.
           </p>
         </aside>
       </form>
